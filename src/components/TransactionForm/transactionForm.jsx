@@ -18,15 +18,22 @@ function TransactionForm (){
     },[])
 
     const handleSubmit = ()=> {
+
        const newTransaction = {
-        description , 
+        id: Date.now(),
         amount , 
         type , 
         category , 
+        description ,
         date
        }
-
        addTransaction(newTransaction)
+    }
+
+    const goBackIcon = () => {
+      return  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M15 18L9 12L15 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+       </svg>
     }
 
   
@@ -35,29 +42,29 @@ function TransactionForm (){
   return(
     <div className="transaction-form">
        <div className="header-box">
-        <button className="go-back"> go back icon </button>
+        <button className="go-back"> {goBackIcon} </button>
         <h1>Add Transaction</h1>
-        <h4>Track your financial activity</h4>
+        <p>Track your financial activity</p>
        </div>
-       <div className="form-box">
-         <h3>Amount</h3>
+       <div className="form-box"> 
+         <p className="titles">Amount</p>
          <input type="text" placeholder="0.00" value={amount}
            onChange={(e)=> setAmount(e.target.value)}
          />
-         <h3>Transaction Type</h3>
+         <p className="titles">Transaction Type</p>
           <div className="type-toggle" >
             <div className="income" onClick={()=> setType("income")}>Income</div>
             <div className="expense" onClick={()=> setType("expense")}>Expense</div>
           </div>
-          <h3>Choose Category</h3>
+          <p className="titles"> Choose Category</p>
            <div className="category-box">
             {["Shopping" , "Food" , "Transport" , "Beauty" , "Health", "Fun" , "Education" , "Other"].map((categ )=> (
             <span key={categ} onClick={()=> setCategory(categ)}>{categ}</span>
            ))}
            </div>
-           <h3>Description </h3>
+           <p className="titles">Description </p>
            <input type="text" placeholder="What was this for ?" value={description} onChange={(e)=> setDescription(e.target.value)}/>
-           <h3>Date</h3>
+           <p className="titles">Date</p>
            <input type="date"
            value={date}
            onChange={(e)=> setDate(e.target.value)} />
