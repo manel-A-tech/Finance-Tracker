@@ -1,15 +1,16 @@
 body{
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: antiquewhite;
+  background-color:#cce3de88;
+  
 }
 
 
 .header-box{
   background: linear-gradient(135deg, #38b2ac 0%, #319795 100%); ;
   border-radius: 24px;
-  padding: 20px;
+  padding: 18px;
   height: 120px;
-  width: 75%;
+  width: 65%;
   max-width: 600px;
   margin:20px auto;
   display: flex;
@@ -18,28 +19,188 @@ body{
   
 }
 
-h1, p { 
+h1, .title{ 
 margin: 0;
 color: azure;
 }
 
-.go-back {
+.go-back  {
   margin-bottom: 24px;
-  
+  background-color: #ffffff29;
+  width: 50px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
 }
        
 .form-box{
-  width: 75%;
+  width: 65%;
   max-width: 600px;
-  height: 450px;
-  background-color: white;
+  height: 600px;
+  background-color:#fbfefb;
   margin: auto;
-  padding: 20px;
+  padding: 18px;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
+.titles {
+  font-size:18px;
+  font-weight: bold;
+  margin-left: 25px;
+  color:#333533ec ;
+}
+
+#text-input{
+  height: 35px;
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 8px;
+  border: 3px solid #e0e0e0; 
+ 
+}
+
+#text-input:focus{
+  border: 3px solid rgba(56, 178, 172, 0.5); ; 
+  outline: none;
+}
+
+#text-input::placeholder{
+  color: grey;
+  font-size: 16px;
+  padding:  20px  0 20px 20px ;
+}
+
+
+.type-toggle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  background-color: #cce3de87;
+  width: 400px;
+  max-height: 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.income , .expense {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#333533ec ;
+  font-weight: 500;
+  font-size: 16px;
+  transition:  color 0.3s;
+}
+
+.slider {
+  position: absolute;
+  width: 50%;
+  height: calc(100% - 6px);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  left: 4px; 
+  
+}
+
+
+.type-toggle.expense .slider {
+  transform: translateX(calc(100% - 8px));
+  background-color: rgba(178, 56, 56, 0.2);
+}
+
+
+.type-toggle.income .slider {
+  transform: translateX(0);
+   background-color: rgba(56, 178, 172, 0.2);
+}
+
+.income.active{
+  color: rgb(56, 178, 172); 
+}
+
+.expense.active{
+  color: rgb(178, 56, 56); 
+}
+
+.category-box{
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2 , 1fr);
+  gap: 15px;
+}
+
+.category{
+  background-color: #f5f5f5; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px; 
+  padding: 10px 5px; 
+  text-align: center; 
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-out;
+}
+
+.category:hover {
+  transform: translateY(-3px); 
+    border: 2px solid rgba(56, 178, 172, 0.5); 
+    box-shadow: 0 4px 8px rgba(56, 178, 172, 0.2); ;
+}
+
+
+.category.selected{
+  background-color: rgba(56, 178, 172);
+  color: white;
+}
+
+#date-input{
+  height: 50px;
+  width: 30%;
+  margin: 0 30px;
+  border-radius: 8px;
+  border: 3px solid #e0e0e0; 
+  padding-left: 16px;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.add-transaction-btn{
+  width: 300px ;
+  height:50px ;
+  background-color: #319795;
+  color: white;
+  font-family:  'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif ;
+  font-size: 18px;
+  border: 0;
+  border-radius: 8px;
+   margin: 0 15px;
+
+}
+
+.date{
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
 
 
 
