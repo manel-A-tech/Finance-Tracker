@@ -10,7 +10,6 @@ function TransactionForm (){
     const [date , setDate] =  useState(new Date())
     const {addTransaction} = useContext(transactionContext)
   
-
    useEffect(()=>{
       const today = new Date()
       const currentDate = today.toISOString().split('T')[0]

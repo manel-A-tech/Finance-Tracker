@@ -1,0 +1,125 @@
+.list-header {
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  min-height: 70px;
+  border-radius: 24px;
+  max-width: 95%;
+}
+
+.list-go-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.list-go-back-btn:hover {
+  background-color: #e9ecef;
+}
+
+.list-go-back-btn::before {
+  content: "←";
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.list-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #343a40;
+  margin: 0 0 0 16px;
+  flex: 1;
+  text-align: left;
+}
+
+.list-add-transaction-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #319795df;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.list-add-transaction-btn:hover {
+  background-color: #319795;
+}
+
+.list-add-transaction-btn::before {
+  content: "+";
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.list-search{
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  min-height: 70px;
+  background-color: white;
+  max-width: 95%;
+  border-radius:24px ;
+  border: none;
+  padding: 8px 24px;
+
+}
+
+#list-search-transactions{
+  height: 35px;
+  min-width: 95%;
+  border-radius: 14px;
+  padding: 8px 24px;
+  border: 3px solid rgba(128, 128, 128, 0.366);
+}
+
+#list-search-transactions:focus{
+  border: 3px solid rgba(56, 178, 172, 0.5); 
+  outline: none;
+}
+
+#list-search-transactions::placeholder{
+  font-size: 15px;
+  font-weight: 500;
+  color: #343a40ba;
+  content: "";
+}
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .list-header {
+    padding: 12px 16px;
+  }
+  
+  .list-title {
+    font-size: 20px;
+  }
+  
+  .list-go-back-btn,
+  .list-add-transaction-btn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
