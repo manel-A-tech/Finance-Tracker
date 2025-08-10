@@ -3,10 +3,21 @@ import { transactionContext } from "../../financeContext.jsx"
 import { useContext, useState } from 'react'
 
 function TransactionsList(){
-  const {transactions, numTransactions} = useContext(transactionContext)
+  const {transactions,
+     handleDeleteTransaction, 
+     handleSaveEditTransaction} = useContext(transactionContext)
   const [search, setSearch] = useState("")
   const [filteredTransactions, setFilteredTransactions] = useState([])
   const [didSearch, setDidSearch] = useState(false)
+  const [isEditing , setIsEditing] = useState(false)
+  const [formData , setFormData] = useState({
+    description:"",
+    amount:"",
+    date:new Date(),
+    category:"",
+    type:"" 
+  })
+  const [editingId, setEditingId] = useState(null)
 
   const handleSearchTransactions = (search) => {
     if (!search.trim()){
@@ -36,6 +47,29 @@ function TransactionsList(){
     }
   }
   
+  const handleEdit = (transaction) => {
+    setFormData({
+      description: transaction.description,
+      amount: transaction.amount,
+      date : transaction.date,
+      category: transaction.category,
+      type: transaction.type
+    })
+    setIsEditing(true)
+    setEditingId(transaction.id)
+  }
+
+    const handleSaveEdit = () => {
+    const updatedTransaction = {
+      ...formData,
+      amount: parseFloat(formData.amount)
+    }
+    handleSaveEditTransaction(editingId, updatedTransaction)
+    setEditingId(null)
+    setIsEditing(false)
+    setFormData({ description: '', amount: '', date: '', category: '', type: '' })
+  }
+
   return (
     <div>
       
@@ -57,17 +91,31 @@ function TransactionsList(){
           />
         </div>
         
-        <div className="transactions">
+        
+          <div className='list-transactions-header'>
+             <span className='transactions-header'>Description</span>
+             <span className='transactions-header'>Amount</span>
+             <span className='transactions-header'>Date</span>
+             <span className='transactions-header'>𖤘 Category</span>
+             <span className='transactions-header'>Action</span>
+          </div>
+          <div className="transactions">
           {didSearch ? (
             <div className='searched-transactions'>
               {filteredTransactions.length > 0 ? (
-                <ul>
+                <ul className='ul-transactions'>
                   {filteredTransactions.map((transaction) => (
-                    <li key={transaction.id}>
-                      <p>{transaction.description}</p>
-                      <p>{transaction.amount}</p>
+                    <li key={transaction.id} className='li-transactions'>
+                      <p  >{transaction.description}</p>
+                      <p className={`${transaction.type === "income" ? "income-amount" : "expense-amount"}`} >
+                        {transaction.type === "income" ? "+" : "-"}$
+                        {transaction.amount}</p>
                       <p>{transaction.date}</p>
                       <p>{transaction.category}</p>
+                      <div className="action-btns">
+                    <button className='list-edit-btn' onClick={()=> handleEdit(transaction)}>Edit</button>
+                    <button className='list-delete-btn' onClick=  { ()=> handleDeleteTransaction(transaction.id)} >Delete</button>
+                       </div>
                     </li>
                   ))}
                 </ul>
@@ -77,19 +125,64 @@ function TransactionsList(){
             </div>
           ) : (
             <div className='all-transactions'>
-              <ul>
+              <ul className='ul-tranasactions'>
                 {transactions.map((transaction) => (
-                  <li key={transaction.id}>
+                  <li key={transaction.id} className='li-transactions' >
                     <p>{transaction.description}</p>
-                    <p>{transaction.amount}</p>
+                    <p className={`${transaction.type === "income" ? "income-amount" : "expense-amount"}`} >
+                      {transaction.type === "income" ? "+" : "-"}$
+                      {transaction.amount}</p>
                     <p>{transaction.date}</p>
                     <p>{transaction.category}</p>
+                  <div className="list-action-btns">
+                    <button className='list-edit-btn' onClick={()=> handleEdit(transaction)}>Edit</button>
+                    <button className='list-delete-btn' onClick={()=>handleDeleteTransaction(transaction.id)} >Delete</button>
+                  </div>
                   </li>
                 ))}
               </ul>
             </div>
           )}
         </div>
+          {isEditing === true ?
+          <div className='list-editing-form'>
+           <h3>Edit Transaction</h3>
+            <div className='list-edit-transactions-body'>
+              <p className='list-edit-p'>Description</p>
+              <input type="text" value={formData.description} onChange={(e)=> setFormData({...formData,description:e.target.value})} className='list-edit-input'  />
+              <p className='list-edit-p'>Amount</p>
+              <input type="number" value={formData.amount} onChange={(e) => setFormData({...formData, amount:e.target.value })} className='list-edit-input'  />
+              <p className='list-edit-p'>Date</p>
+              <input type="date" value={formData.date} onChange={(e) => setFormData({...formData, date: e.target.value})} className='list-edit-input' />
+              <p className='list-edit-p'>Ctegory</p>
+               <select 
+               value={formData.category} 
+               onChange={(e)=> setFormData({...formData, category: e.target.value})}
+               className='list-edit-select'>
+                 <option value="Shopping 🛍️ ">Shopping </option>
+                 <option value="Food 🍔">Food </option>
+                 <option value="Transport🚗">Transport </option>
+                 <option value="Beauty💄">Beauty </option>
+                 <option value="Health 🩺">Health </option>
+                 <option value="Fun 🎉"> Fun</option>
+                 <option value="Education 🎓">Education </option>
+                 <option value="Other📦">Other </option>
+               </select>
+               <p className='list-edit-p'>Type</p>
+               <select
+                value={formData.type}
+                onChange={(e)=> setFormData({...formData, type: e.target.value})}
+                className='list-edit-select'>
+                 <option value="income">Income</option>
+                 <option value="expense">Expense</option>
+               </select>
+            </div>
+            <div className='list-edit-btns'>
+              <button onClick={()=>setIsEditing(false)}>Cnacel</button>
+              <button onClick={handleSaveEdit} >Save changes</button>
+            </div>
+          </div> : 
+          <div></div> }
       </div>
     </div>
   )
