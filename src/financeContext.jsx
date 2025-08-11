@@ -3,7 +3,7 @@ export const transactionContext = createContext()
 
 function FinanceContext ({children}){
   
- const [transactions , setTransactions] = useState(()=> {const saved = localStorage.getItem("transactions");
+/*  const [transactions , setTransactions] = useState(()=> {const saved = localStorage.getItem("transactions");
     return saved ? JSON.parse(saved) :
   [{
     id: 1,
@@ -54,15 +54,68 @@ function FinanceContext ({children}){
     const saved = localStorage.getItem("expense")
     return saved ? saved : 183.24
   })
- 
- useEffect(()=>{
+  const [numTransactions , setNumTransactions] = useState(()=>{
+    const saved = localStorage.getItem("numTransactions")
+    return saved ? saved: 5
+  }) */
+
+  
+
+    
+
+/* useEffect(()=>{
       localStorage.setItem("transactions", JSON.stringify(transactions))
       localStorage.setItem("income" , income)
       localStorage.setItem("expense", expense)
-      
-  },[transactions,income,expense]) 
+      localStorage.setItem("numTransactions" , numTransactions)
+  },[transactions,income,expense,numTransactions]) */
 
+  const [transactions , setTransactions] = useState([
+  {
+    id: 1,
+    description: "Grocery shopping",
+    amount: 85.50,
+    type: "expense",
+    category: "Food 🍔",
+    date: "2025-07-30"
+  },
+  {
+    id: 2,
+    description: "Freelance payment",
+    amount: 1200,
+    type: "income",
+    category: "Other 📦",
+    date: "2025-08-01"
+  },
+  {
+    id: 3,
+    description: "Uber ride",
+    amount: 12.75,
+    type: "expense",
+    category: "Transport 🚗",
+    date: "2025-08-05"
+  },
+  {
+    id: 4,
+    description: "Online course",
+    amount: 49.99,
+    type: "expense",
+    category: "Education 🎓",
+    date: "2025-08-05"
+  },
+  {
+    id: 5,
+    description: "Birthday gift",
+    amount: 35,
+    type: "expense",
+    category: "Shopping 🛍️",
+    date: "2025-08-08"
+  }
 
+  ])
+  const [income , setIncome] = useState(1200)
+  const [expense , setExpense] = useState(183.24)
+ 
   const addTransaction = (newTransaction)=>{
      setTransactions(prev => [...prev, newTransaction])
      if(newTransaction.type === "income" ){
@@ -72,8 +125,8 @@ function FinanceContext ({children}){
      }
      return alert("Transaction saved!")
   }
- /*  
-  useEffect(() => {
+   
+/*  useEffect(() => {
   console.log("Updated transaction:", transactions);
   console.log(expense)
   console.log(income)
