@@ -26,6 +26,11 @@ function TransactionForm (){
         date
        }
        addTransaction(newTransaction)
+       setAmount("" )
+       setCategory("")
+       setDescription("")
+       setType("income")
+       
     }
 
     const goBackIcon = <svg width="24" height="24" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,8 +53,8 @@ function TransactionForm (){
        </div>
        <div className="form-box"> 
          <p className="form-titles">Amount</p>
-         <input type="text" placeholder="0.00" id="text-input" value={amount}
-           onChange={(e)=> setAmount(e.target.value)}
+         <input type="number" placeholder="0.00" id="text-input" value={amount}
+           onChange={(e)=> setAmount(Number(e.target.value))}
          />
          <p className="form-titles">Transaction Type</p>
            <div className={`type-toggle ${type}`}  >

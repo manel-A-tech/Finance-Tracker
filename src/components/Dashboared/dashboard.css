@@ -1,0 +1,241 @@
+body{
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+   background-color:#cce3de88;
+}
+
+.dashboard-title{
+    margin: 20px;
+    color: #333533ec;
+    font-size: 28px;
+}
+
+.dashboard-general-info{
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 5px;
+    max-width: 95%;
+}
+
+.dashboard-balance, .dashboard-income , .dashboard-expense{
+    min-height:150px ;
+    min-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    padding-left: 10px;
+    background-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+    
+}
+
+.dashboard-balance {
+    border-top: 4px solid #319795;
+}
+
+.dashboard-income{
+    border-top: 4px solid green;
+}
+
+.dashboard-expense{
+    border-top: 4px solid #c1121f;
+}
+
+.dashboard-balance:hover, .dashboard-income:hover, .dashboard-expense:hover {
+    transform: translateY(-5px);
+}
+
+
+.dashboard-info-titles{
+    color:#333533ec;
+    font-size: 15px;
+    font-weight: bold ;
+}
+
+.dashboard-more-info{
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.dashboard-info{
+  margin: 15px 12px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+
+.dashboard-recent-transactions{
+    width: 45%;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.dashboard-recent-transactions-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.recent-transactions-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: #333533ec;
+    padding-left: 25px;
+    padding-top: 12px;
+}
+
+.recent-transactions-btns{
+  display: flex; 
+  gap: 10px; 
+  padding-right: 15px;
+  padding-top: 12px;
+}
+
+.view-all-transactions-btn{
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid #adb5bd;
+    background-color: #ced4da97;
+    color: #333533ec;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 90px;
+}
+
+.view-all-transactions-btn:hover{
+     background-color: #ced4dab8;
+}
+
+.dashboard-add-transactions-btn{
+    border-radius: 8px;
+    border: none;
+    color: white;
+    background-color: #319795d2;
+    font-size: 14px;
+    font-weight: bold;
+    width: 160px;
+    cursor: pointer;
+}
+
+.dashboard-add-transactions-btn:hover{
+    background-color: #319795ef;
+}
+
+.ul-recent-transactions{
+    list-style: none;
+}
+
+.li-recent-transactions{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.p-recent-transactions-income, .p-recent-transactions-expense {
+    padding-right: 40px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.p-recent-transactions-expense{
+    color:#c1121f ;
+}
+
+.p-recent-transactions-income{
+    color: green;
+}
+
+.p-recent-transaction-description{
+    font-size: 18px;
+    font-weight: 500;
+    color:#333533ec ;
+}
+
+.statistics{
+    width: 45%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    
+    display: grid;
+    gap: 20px;
+}
+
+.first-row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.second-row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.containers{
+    padding-bottom: 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+
+
+}
+
+.number-transactions , 
+.categories-used,
+.avrg-transactions,
+.top-spending-category{
+    border: none;
+    height: 120px;
+    width: 250px;
+    justify-items: center;
+    border-radius: 8px;
+    background-color: #cce3de58;
+}
+
+.number-transactions:hover , 
+.categories-used:hover,
+.avrg-transactions:hover,
+.top-spending-category:hover{
+    background-color: #cce3de7f;
+}
+
+.statistics-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: #333533ec;
+    padding-left: 25px;
+    padding-top: -10px;
+}
+
+.dashboard-recent-transactions,
+.statistics {
+  align-items: stretch;
+}
+
+.p-number-transactions,
+.p-categories-used,
+.p-avrg-transactions,
+.p-spending-category{
+    color: #319795;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.p{
+    color: #9999a1;
+    font-size: 15px;
+    font-weight: bold;
+}
