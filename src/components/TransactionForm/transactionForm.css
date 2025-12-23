@@ -2,50 +2,60 @@
 body{
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color:#cce3de88;
+  height: 100vh;
 }
 
 .form-header-box{
   background: linear-gradient(135deg, #38b2ac 0%, #319795 100%); 
   border-radius: 24px;
-  padding: 18px;
-  height: 120px;
+  padding: 20px;
+  height: 90px;
   width: 65%;
   max-width: 600px;
-  margin:20px auto;
+  margin:15px auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start ;
   
 }
 
-.form-h1, .form-sub-title{ 
-margin: 0;
-color: azure;
+.form-header-box > p {
+ margin: 0;
+ color: azure;
+ font-size: 17px;
 }
 
 .form-go-back  {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   background-color: #ffffff29;
   width: 50px;
   border-radius: 15px;
   border: none;
   cursor: pointer;
 }
-       
+      
 .form-box{
   width: 65%;
   max-width: 600px;
-  height: 600px;
+  min-height: 650px;
   background-color:#fbfefb;
   margin: auto;
   padding: 18px;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
+  
+} 
+
+.form-grp{
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
+  gap: 15px;
+  padding: 10px;
 }
 
-.form-titles {
+.form-grp  label {
   font-size:18px;
   font-weight: bold;
   margin-left: 25px;
@@ -63,6 +73,8 @@ color: azure;
 
 #text-input:focus{
   border: 3px solid rgba(56, 178, 172, 0.5); 
+  
+  box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
   outline: none;
 }
 
@@ -80,7 +92,7 @@ color: azure;
   position: relative;
   margin: 0 auto;
   background-color: #cce3de87;
-  width: 400px;
+  width: 85%;
   max-height: 25px;
   border-radius: 12px;
   cursor: pointer;
@@ -103,21 +115,8 @@ color: azure;
   width: 50%;
   height: calc(100% - 6px);
   border-radius: 12px;
-  transition: transform 0.3s ease;
-  left: 4px; 
-  
-}
-
-
-.type-toggle.expense .slider {
-  transform: translateX(calc(100% - 8px));
-  background-color: rgba(178, 56, 56, 0.2);
-}
-
-
-.type-toggle.income .slider {
-  transform: translateX(0);
-   background-color: rgba(56, 178, 172, 0.2);
+ /* transition: transform 0.3s ease; */
+  left: 4px;  
 }
 
 .income.active{
@@ -134,44 +133,54 @@ color: azure;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2 , 1fr);
   gap: 15px;
+  width: 92%;
 }
 
 .category{
   background-color: #f5f5f5; 
   border: 1px solid #e0e0e0; 
   border-radius: 8px; 
-  padding: 10px 5px; 
+  padding: 10px 10px; 
   text-align: center; 
   cursor: pointer; 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease-out;
-
-  min-width: 0; 
+  gap: 8px;
+  /*transition: transform 0.2s ease-out;*/
+  min-width: 0;
   overflow: hidden; 
   white-space: nowrap;
+  font-size: 14px;
 }
-
-.category:hover {
-  transform: translateY(-3px); 
-    border: 2px solid rgba(56, 178, 172, 0.5); 
-    box-shadow: 0 4px 8px rgba(56, 178, 172, 0.2); ;
-}
-
 
 .category.selected{
-  background-color: rgba(56, 178, 172);
+  /*background-color: ;
   color: white;
+  */
+  border: 2px solid rgba(56, 178, 172);
+  background-color: rgba(56, 178, 172, 0.1);
+  color: #38b2ac;
+  font-weight: 600;
+  transform: translateY(-3px); /*lift effect */
+  box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3); /* enhanced shadow */
+
 }
 
 #date-input{
   height: 50px;
-  width: 30%;
+  width: 90%;
   margin: 0 30px;
   border-radius: 8px;
   border: 3px solid #e0e0e0; 
   padding-left: 16px;
+}
+
+#date-input:focus{
+  border: 3px solid rgba(56, 178, 172, 0.5); 
+  box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+  outline: none;
 }
 
 .container{
@@ -181,7 +190,7 @@ color: azure;
 }
 
 .add-transaction-btn{
-  width: 300px ;
+  width: 90% ;
   height:50px ;
   background-color: #319795;
   color: white;
@@ -189,13 +198,26 @@ color: azure;
   font-size: 18px;
   border: 0;
   border-radius: 8px;
-   margin: 0 15px;
-
+  margin: 10px auto;
+  cursor: pointer;
 }
 
-.date{
-  margin-bottom: 10px;
+
+.form-box  p {
+  color: #e74c3c;
+  font-size: 14px;
+  margin: 0 0 0 25px;
 }
+
+#success-msg {
+  color: #319795;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+
+
 
 
 

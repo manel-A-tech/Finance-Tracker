@@ -109,6 +109,7 @@ body{
     font-weight: bold;
     cursor: pointer;
     width: 90px;
+    height: 40px;
 }
 
 .view-all-transactions-btn:hover{
@@ -123,6 +124,7 @@ body{
     font-size: 14px;
     font-weight: bold;
     width: 160px;
+    height: 40px;
     cursor: pointer;
 }
 

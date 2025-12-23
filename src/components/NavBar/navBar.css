@@ -1,0 +1,22 @@
+
+.navbar_container{
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  min-width: 100%;
+  display: grid;
+  grid-auto-columns: max-content; /* Columns fit content */
+  grid-auto-flow: column; /* Arrange in columns */
+  justify-content: space-evenly; /* Now this works! */
+  align-items: center; /* Center vertically */
+  height: 60px;
+}
+
+.navbar-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  color: #6c757d;
+}

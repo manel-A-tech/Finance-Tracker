@@ -1,6 +1,6 @@
 import { createContext, useState , useEffect } from "react"
 export const transactionContext = createContext()
-
+import { DollarSign, Utensils, Car, ShoppingBag, Heart, Sparkles, GraduationCap, Package } from "lucide-react";
 function FinanceContext ({children}){
   
 /*  const [transactions , setTransactions] = useState(()=> {const saved = localStorage.getItem("transactions");
@@ -62,13 +62,13 @@ function FinanceContext ({children}){
   
 
     
-
-/* useEffect(()=>{
+/*
+ useEffect(()=>{
       localStorage.setItem("transactions", JSON.stringify(transactions))
       localStorage.setItem("income" , income)
       localStorage.setItem("expense", expense)
       localStorage.setItem("numTransactions" , numTransactions)
-  },[transactions,income,expense,numTransactions]) */
+  },[transactions,income,expense,numTransactions])  */
 
   const [transactions , setTransactions] = useState([
   {
@@ -76,7 +76,7 @@ function FinanceContext ({children}){
     description: "Grocery shopping",
     amount: 85.50,
     type: "expense",
-    category: "Food 🍔",
+    category: "Food",
     date: "2025-07-30"
   },
   {
@@ -84,7 +84,7 @@ function FinanceContext ({children}){
     description: "Freelance payment",
     amount: 1200,
     type: "income",
-    category: "Other 📦",
+    category: "Other",
     date: "2025-08-01"
   },
   {
@@ -92,7 +92,7 @@ function FinanceContext ({children}){
     description: "Uber ride",
     amount: 12.75,
     type: "expense",
-    category: "Transport 🚗",
+    category: "Transport",
     date: "2025-08-05"
   },
   {
@@ -100,7 +100,7 @@ function FinanceContext ({children}){
     description: "Online course",
     amount: 49.99,
     type: "expense",
-    category: "Education 🎓",
+    category: "Education",
     date: "2025-08-05"
   },
   {
@@ -108,13 +108,36 @@ function FinanceContext ({children}){
     description: "Birthday gift",
     amount: 35,
     type: "expense",
-    category: "Shopping 🛍️",
+    category: "Shopping",
     date: "2025-08-08"
-  }
-
+  } 
   ])
-  const [income , setIncome] = useState(1200)
-  const [expense , setExpense] = useState(183.24)
+/*
+  const [income , setIncome] = useState()
+  const [expense , setExpense] = useState() */
+
+  const [income, setIncome] = useState(() => {
+  return transactions
+    .filter(t => t.type === "income")
+    .reduce((sum, t) => sum + t.amount, 0)
+})
+
+const [expense, setExpense] = useState(() => {
+  return transactions
+    .filter(t => t.type === "expense")
+    .reduce((sum, t) => sum + t.amount, 0)
+})
+
+    const categories = [
+  { name: "Salary", icon: <DollarSign size={15} /> },
+  { name: "Food", icon: <Utensils size={15} /> },
+  { name: "Transport", icon: <Car size={15} /> },
+  { name: "Shopping", icon: <ShoppingBag size={15} /> },
+  { name: "Health", icon: <Heart size={15} /> },
+  { name: "Fun", icon: <Sparkles size={15} /> },
+  { name: "Education", icon: <GraduationCap size={15} /> },
+  { name: "Other", icon: <Package size={15} /> }
+  ];
  
   const addTransaction = (newTransaction)=>{
      setTransactions(prev => [...prev, newTransaction])
@@ -123,10 +146,10 @@ function FinanceContext ({children}){
      } else if (newTransaction.type === "expense"){
       setExpense(expense => expense + newTransaction.amount)
      }
-     return alert("Transaction saved!")
+     //return alert("Transaction saved!")
   }
    
-/*  useEffect(() => {
+ /* useEffect(() => {
   console.log("Updated transaction:", transactions);
   console.log(expense)
   console.log(income)
@@ -191,7 +214,8 @@ const getCurrentMonth = () => {
     handleSaveEditTransaction,
     income,
     expense,
-    getCurrentMonth}}>
+    getCurrentMonth , 
+    categories}}>
     {children}
    </transactionContext.Provider>
   )

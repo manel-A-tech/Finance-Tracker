@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import { transactionContext } from "../../financeContext.jsx"
 import './dashboard.css'
+import { Link } from "react-router-dom"
 function Dashboard (){
 
   const {income ,
          expense,
          transactions,
         getCurrentMonth} = useContext(transactionContext)
-  const balance = income - expense
+  const balance = Math.floor(income - expense)
   const [recentTransactions, setRecentTransactions] = useState([])
   const [avrgExpensesMonth , setAvrgExpensesMonth] = useState(0)
   const [categoriesUsedMonth , setCategoriesUsedMonth] = useState(0)
@@ -15,10 +16,10 @@ function Dashboard (){
   const [topSpendingCategory, setTopSpendingCategory] = useState("");
 
   const handleRecentTransactions = (transactions) => {
-    const recentTransactions = []
-     for( let i = transactions.length  - 1 ;  i >= 0 ; i--){
+    const recentTransactions = [...transactions].reverse().slice(0,5)
+     /*for( let i = transactions.length  - 1 ;  i >= 0 ; i--){
         recentTransactions.push(transactions[i])
-     }
+     } */
     setRecentTransactions(recentTransactions)
   }
 
@@ -40,8 +41,8 @@ const getNumberofTransactionsInCurrentMonth = () => {
     handleRecentTransactions(transactions) 
     getNumberofTransactionsInCurrentMonth()
     getAvrgTransactionsInCurrentMonth()
-    setCategoriesUsedMonth(getCategoriesUsedMonth)
-    setTopSpendingCategory(getTopSpendingCategory)
+    setCategoriesUsedMonth(getCategoriesUsedMonth())
+    setTopSpendingCategory(getTopSpendingCategory())
   },[transactions, getCurrentMonth])  
 
   const getAvrgTransactionsInCurrentMonth = () => {
@@ -66,7 +67,7 @@ const getCategoriesUsedMonth = () => {
       uniqueCategories.add(transaction.category)
     }
   })
-  return uniqueCategories.size || "Haven't used any categories yet"
+  return uniqueCategories.size || "No categories yet"
 }
 
 const getTopSpendingCategory = () => {
@@ -93,9 +94,6 @@ const getTopSpendingCategory = () => {
   return topCategory || "No expenses"; 
 };
 
-
-  
-
  
   return(
     <div>
@@ -119,8 +117,12 @@ const getTopSpendingCategory = () => {
             <div className="dashboard-recent-transactions-header">
               <p className="recent-transactions-title">Recent Transaction</p>
               <div className="recent-transactions-btns">
+              <Link to="/transactionList">
               <button className="view-all-transactions-btn">View All</button>
-              <button className="dashboard-add-transactions-btn" >+ Add Transaction</button>
+              </Link>
+              <Link to="/transactionForm">
+              <button className="dashboard-add-transactions-btn">+ Add Transaction</button>
+              </Link>
               </div>
             </div>
            
